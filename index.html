@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survivor Fantasy Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Torch decorations -->
+<div class="torch-container" aria-hidden="true">
+  <div class="torch"><div class="flame"></div><div class="torch-stick"></div></div>
+  <div class="torch"><div class="flame"></div><div class="torch-stick"></div></div>
+</div>
+
+<!-- ============================================================
+     NAVIGATION BAR
+============================================================ -->
+<nav id="navbar" style="display:none;">
+  <div class="nav-logo">🔥 Survivor Fantasy</div>
+  <ul class="nav-links">
+    <li><button data-view="dashboard">Dashboard</button></li>
+    <li><button data-view="draft">Draft</button></li>
+    <li><button data-view="vote">Vote</button></li>
+    <li><button data-view="challenges">Challenges</button></li>
+    <li><button data-view="standings">Standings</button></li>
+  </ul>
+  <div class="score-badge">⚡ 0 pts</div>
+</nav>
+
+<!-- ============================================================
+     VIEW: LANDING
+============================================================ -->
+<section id="view-landing" class="view">
+  <div class="landing-hero">
+    <h1 class="survivor-logo">SURVIVOR</h1>
+    <p class="survivor-subtitle">Fantasy League</p>
+
+    <div class="setup-card">
+      <h2>Outwit. Outplay. Outlast.</h2>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:24px;line-height:1.6;">
+        Draft your tribe, predict who gets voted off, and play mini challenges — just like fantasy football!
+      </p>
+
+      <form id="landing-form">
+        <div class="form-group">
+          <label for="player-name-input">Your Name</label>
+          <input
+            type="text"
+            id="player-name-input"
+            placeholder="Enter your name..."
+            maxlength="24"
+            autocomplete="off"
+            required
+          >
+        </div>
+        <button type="submit" class="btn-primary">
+          🔥 Start Your Adventure
+        </button>
+      </form>
+
+      <hr class="tribal-divider" style="margin:28px 0;">
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;text-align:center;">
+        <div>
+          <div style="font-size:1.5rem;">🏆</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Draft Your Tribe</div>
+        </div>
+        <div>
+          <div style="font-size:1.5rem;">🗳️</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Predict the Boot</div>
+        </div>
+        <div>
+          <div style="font-size:1.5rem;">⚡</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Play Challenges</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;font-size:0.75rem;color:var(--text-muted);">
+      Season 39: Island of the Idols · 18 Contestants · 14 Weeks
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     VIEW: DRAFT
+============================================================ -->
+<section id="view-draft" class="view">
+  <div class="screen-container">
+    <div class="screen-header">
+      <h1>🏝️ Draft Your Tribe</h1>
+      <p>Pick 4 survivors for your fantasy team. Choose wisely — points depend on their performance!</p>
+    </div>
+
+    <div id="draft-completed-banner" class="vote-locked-msg hidden" style="margin-bottom:24px;">
+      ✅ Your draft is finalized! You can view your team on the Dashboard.
+      <button class="btn-secondary" id="btn-view-dashboard" style="margin-left:12px;display:inline-block;">Go to Dashboard</button>
+    </div>
+
+    <div class="draft-layout">
+      <!-- Left: Contestant Grid -->
+      <div class="draft-board">
+        <div class="draft-filters">
+          <button class="filter-btn active" data-filter="all">All Tribes</button>
+          <button class="filter-btn" data-filter="lairo">🔵 Lairo</button>
+          <button class="filter-btn" data-filter="vokai">🔴 Vokai</button>
+        </div>
+
+        <div class="contestants-grid" id="contestants-grid">
+          <!-- Populated by draft.js -->
+        </div>
+      </div>
+
+      <!-- Right: My Team -->
+      <div class="draft-sidebar">
+        <div class="draft-counter">
+          <div class="picks-count" id="picks-count">0</div>
+          <div class="picks-label">of <span id="picks-max">4</span> picks</div>
+        </div>
+
+        <ul class="my-picks-list" id="my-picks-list">
+          <!-- Populated by draft.js -->
+        </ul>
+
+        <button class="btn-primary" id="btn-finalize-draft" disabled style="opacity:0.5;">
+          Lock In My Team
+        </button>
+
+        <div style="margin-top:20px;padding:14px;background:rgba(0,0,0,0.3);border-radius:8px;font-size:0.78rem;color:var(--text-muted);line-height:1.6;">
+          <strong style="color:var(--parchment-dark);">Scoring Guide:</strong><br>
+          +2 pts per week your survivor stays<br>
+          +5 pts if they win immunity<br>
+          +50 pts if they win the season!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VIEW: DASHBOARD
+============================================================ -->
+<section id="view-dashboard" class="view">
+  <div class="screen-container">
+
+    <!-- Week Advance Bar -->
+    <div class="week-advance-bar">
+      <div>
+        <div class="week-info">📅 Week <span id="current-week">1</span> of 14</div>
+        <div class="week-sub">Season 39: Island of the Idols</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <div style="font-family:var(--font-display);font-size:0.85rem;color:var(--fire-yellow);">
+          Rank: <span id="player-rank">#?</span>
+        </div>
+        <button class="btn-tribal" id="btn-advance-week">⏭ Advance Week</button>
+        <button class="btn-secondary" id="btn-reset-game" style="font-size:0.75rem;padding:8px 12px;">Reset</button>
+      </div>
+    </div>
+
+    <!-- Score Overview -->
+    <div class="dashboard-grid">
+      <div class="stat-card">
+        <h3>Your Score</h3>
+        <div class="stat-number" id="score-total">0</div>
+        <div class="stat-label">total fantasy points</div>
+        <div class="score-breakdown">
+          <div class="score-item">
+            <div class="val" id="score-draft">0</div>
+            <div class="lbl">Draft</div>
+          </div>
+          <div class="score-item">
+            <div class="val" id="score-pred">0</div>
+            <div class="lbl">Predictions</div>
+          </div>
+          <div class="score-item">
+            <div class="val" id="score-chal">0</div>
+            <div class="lbl">Challenges</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div>
+        <div style="font-family:var(--font-display);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:16px;">Quick Actions</div>
+        <div class="quick-actions">
+          <div class="action-card" id="btn-goto-vote">
+            <span class="action-icon">🗳️</span>
+            <h3>Cast Your Vote</h3>
+            <p>Predict who goes home this week</p>
+          </div>
+          <div class="action-card" id="btn-goto-challenges">
+            <span class="action-icon">⚡</span>
+            <h3>Challenges</h3>
+            <p>Earn bonus points in mini games</p>
+          </div>
+          <div class="action-card" id="btn-goto-standings">
+            <span class="action-icon">🏆</span>
+            <h3>Standings</h3>
+            <p>See where you rank this season</p>
+          </div>
+          <div class="action-card" id="btn-goto-draft">
+            <span class="action-icon">🏝️</span>
+            <h3>My Draft</h3>
+            <p>View or edit your picked tribe</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="tribal-divider">
+
+    <!-- My Team -->
+    <div>
+      <h2 style="font-size:1.1rem;color:var(--parchment);margin-bottom:16px;">
+        🔥 My Tribe — <span id="dashboard-player-name"></span>
+      </h2>
+      <div class="team-grid" id="my-team-grid">
+        <!-- Populated by game.js -->
+      </div>
+    </div>
+
+    <!-- Last Week Results -->
+    <div class="results-card hidden" style="margin-top:24px;">
+      <h3>📊 Last Week's Prediction Results</h3>
+      <div id="last-week-results">
+        <!-- Populated by game.js -->
+      </div>
+    </div>
+
+    <!-- Scoring Guide -->
+    <div style="margin-top:30px;background:rgba(20,20,20,0.7);border:var(--border-tribal);border-radius:12px;padding:24px;">
+      <h3 style="font-size:0.95rem;color:var(--parchment);margin-bottom:16px;">📋 How Points Work</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+        <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.8;">
+          <strong style="color:var(--fire-yellow);">Draft Points</strong><br>
+          +2 per week your pick survives<br>
+          +5 per immunity win<br>
+          +50 if your pick wins the season
+        </div>
+        <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.8;">
+          <strong style="color:var(--fire-yellow);">Prediction Points</strong><br>
+          +15 correct boot prediction<br>
+          +5 correct winner prediction/week
+        </div>
+        <div style="font-size:0.82rem;color:var(--text-muted);line-height:1.8;">
+          <strong style="color:var(--fire-yellow);">Challenge Points</strong><br>
+          +3 first completion bonus<br>
+          Up to 100 pts per challenge<br>
+          Replay anytime to beat your score!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VIEW: VOTE / TRIBAL COUNCIL
+============================================================ -->
+<section id="view-vote" class="view">
+  <div class="screen-container">
+
+    <div class="tribal-header">
+      <div style="font-size:2rem;margin-bottom:8px;">🔥</div>
+      <h2 id="tribal-week-label">Week 1 — Tribal Council</h2>
+      <div class="week-label" id="tribal-week-desc">Who will be voted out tonight?</div>
+    </div>
+
+    <!-- Points preview -->
+    <div style="text-align:center;margin-bottom:24px;">
+      <div class="points-preview" id="vote-pts-preview">
+        Correct boot = +15 pts | Correct winner pick = +5 pts
+      </div>
+    </div>
+
+    <div class="vote-sections">
+      <!-- Boot Prediction -->
+      <div class="vote-section">
+        <h3>🗳️ Boot Prediction</h3>
+        <p class="vote-desc">Who do you think gets voted out THIS week?</p>
+        <ul class="vote-list" id="boot-vote-list">
+          <!-- Populated by voting.js -->
+        </ul>
+      </div>
+
+      <!-- Winner Prediction -->
+      <div class="vote-section">
+        <h3>🏆 Winner Pick</h3>
+        <p class="vote-desc">Who do you think wins the entire season?</p>
+        <ul class="vote-list" id="winner-vote-list">
+          <!-- Populated by voting.js -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="vote-submit-area">
+      <button class="btn-primary" id="btn-submit-votes" disabled style="width:auto;padding:14px 40px;opacity:0.5;">
+        Select Both Picks
+      </button>
+      <div class="vote-locked-msg hidden" id="vote-locked-msg">
+        ✅ Votes locked! Results revealed when you advance the week on Dashboard.
+      </div>
+    </div>
+
+    <!-- Previous Results -->
+    <div id="vote-results-section" style="margin-top:30px;">
+      <!-- Populated by voting.js -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     VIEW: CHALLENGES
+============================================================ -->
+<section id="view-challenges" class="view">
+  <div class="screen-container">
+    <div class="screen-header">
+      <h1>⚡ Immunity Challenges</h1>
+      <p>Play mini games to earn bonus points. Replay anytime to beat your best score!</p>
+    </div>
+
+    <!-- Hub: Challenge Selection -->
+    <div id="challenge-hub-section">
+      <div class="challenge-hub-grid" id="challenge-hub-grid">
+        <!-- Populated by challenges.js -->
+      </div>
+    </div>
+
+    <!-- Active Challenge -->
+    <div id="challenge-active-section" class="hidden">
+      <!-- Populated dynamically by challenge type -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     VIEW: STANDINGS
+============================================================ -->
+<section id="view-standings" class="view">
+  <div class="screen-container">
+    <div class="screen-header">
+      <h1>🏆 Season Standings</h1>
+      <p>See how you stack up against other players this season.</p>
+    </div>
+
+    <!-- Podium -->
+    <div class="podium" id="standings-podium">
+      <!-- Populated by voting.js renderStandings() -->
+    </div>
+
+    <!-- Leaderboard Table -->
+    <div style="overflow-x:auto;margin-bottom:40px;">
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th>Total</th>
+            <th>Draft</th>
+            <th>Predictions</th>
+            <th>Challenges</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+          <!-- Populated by voting.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="tribal-divider">
+
+    <!-- Season Cast Grid -->
+    <div>
+      <h2 style="font-size:1.1rem;color:var(--parchment);margin-bottom:16px;">
+        🏝️ Season 39 Cast Status
+      </h2>
+      <div class="season-grid" id="season-cast-grid">
+        <!-- Populated by voting.js -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     RESULT MODAL OVERLAY
+============================================================ -->
+<div class="overlay" id="result-overlay">
+  <div class="modal">
+    <span class="modal-icon">🏆</span>
+    <h2 class="modal-title">Result</h2>
+    <p class="modal-message"></p>
+    <div class="points-flash" style="display:none;"></div>
+    <button class="btn-primary modal-close" style="margin-top:20px;">Continue</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     TOAST NOTIFICATIONS
+============================================================ -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ============================================================
+     SCRIPTS (order matters)
+============================================================ -->
+<script src="js/data.js"></script>
+<script src="js/game.js"></script>
+<script src="js/draft.js"></script>
+<script src="js/challenges.js"></script>
+<script src="js/voting.js"></script>
+
+</body>
+</html>
