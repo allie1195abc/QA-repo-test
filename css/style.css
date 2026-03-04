@@ -593,6 +593,9 @@ button {
 
 .tribe-lairo { background: rgba(30,111,168,0.3); color: #5BB8FF; border: 1px solid rgba(30,111,168,0.5); }
 .tribe-vokai { background: rgba(168,32,32,0.3); color: #FF8888; border: 1px solid rgba(168,32,32,0.5); }
+.tribe-cila  { background: rgba(210,100,20,0.3);  color: #FFAA66; border: 1px solid rgba(210,100,20,0.5);  }
+.tribe-kalo  { background: rgba(30,111,168,0.3);  color: #5BB8FF; border: 1px solid rgba(30,111,168,0.5);  }
+.tribe-vatu  { background: rgba(180,40,120,0.3);  color: #FF88CC; border: 1px solid rgba(180,40,120,0.5);  }
 
 .contestant-status {
   font-size: 0.7rem;

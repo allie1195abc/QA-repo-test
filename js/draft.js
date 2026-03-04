@@ -87,8 +87,9 @@ function renderContestantGrid() {
   let list = SEASON.contestants;
 
   // Apply tribe filter
-  if (currentFilter === 'lairo') list = list.filter(c => c.tribe === 'Lairo');
-  else if (currentFilter === 'vokai') list = list.filter(c => c.tribe === 'Vokai');
+  if (currentFilter !== 'all') {
+    list = list.filter(c => c.tribe.toLowerCase() === currentFilter);
+  }
 
   grid.innerHTML = list.map(c => {
     const isDrafted = gameState.draftedTeam.includes(c.id);
@@ -103,6 +104,7 @@ function renderContestantGrid() {
         <div class="card-occ">${c.occupation}</div>
         <span class="contestant-tribe tribe-${c.tribe.toLowerCase()}" style="display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.65rem;margin-bottom:6px;">${c.tribe}</span>
         <div style="font-size:0.65rem;color:var(--text-muted);">Age ${c.age}</div>
+        ${c.prevSeasons ? `<div style="font-size:0.6rem;color:var(--parchment-dark);margin-top:2px;">${c.prevSeasons}</div>` : ''}
         ${isDrafted ? '<div class="drafted-label">PICKED</div>' : ''}
       </div>`;
   }).join('');

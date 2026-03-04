@@ -1,52 +1,48 @@
 // Survivor Fantasy Game - Data
-// Season 39: Island of the Idols
+// Season 50: In the Hands of the Fans (2026)
 
 const SEASON = {
-  name: "Survivor: Island of the Idols",
-  number: 39,
+  name: "Survivor: In the Hands of the Fans",
+  number: 50,
   location: "Fiji",
   totalWeeks: 14,
   contestants: [
-    { id: 1,  name: "Tommy Sheehan",    tribe: "Lairo",   age: 26, occupation: "4th Grade Teacher",   emoji: "🏆", eliminated: null,  isWinner: true  },
-    { id: 2,  name: "Dean Kowalski",    tribe: "Lairo",   age: 28, occupation: "Tech Sales",           emoji: "🎯", eliminated: 14,   isWinner: false },
-    { id: 3,  name: "Janet Carbin",     tribe: "Vokai",   age: 59, occupation: "Chief Lifeguard",      emoji: "🌊", eliminated: 13,   isWinner: false },
-    { id: 4,  name: "Noura Salman",     tribe: "Vokai",   age: 36, occupation: "Entrepreneur",         emoji: "🔥", eliminated: 12,   isWinner: false },
-    { id: 5,  name: "Lauren Beck",      tribe: "Vokai",   age: 28, occupation: "Nanny",                emoji: "💎", eliminated: 11,   isWinner: false },
-    { id: 6,  name: "Dan Spilo",        tribe: "Vokai",   age: 48, occupation: "Talent Manager",       emoji: "🎭", eliminated: 11,   isWinner: false },
-    { id: 7,  name: "Karishma Patel",   tribe: "Lairo",   age: 37, occupation: "Personal Injury Att.", emoji: "⚖️", eliminated: 10,   isWinner: false },
-    { id: 8,  name: "Elaine Stott",     tribe: "Lairo",   age: 41, occupation: "Factory Worker",       emoji: "🦁", eliminated: 9,    isWinner: false },
-    { id: 9,  name: "Aaron Meredith",   tribe: "Lairo",   age: 36, occupation: "Fitness Trainer",      emoji: "💪", eliminated: 8,    isWinner: false },
-    { id: 10, name: "Missy Byrd",       tribe: "Lairo",   age: 24, occupation: "Air Force Vet",        emoji: "✈️", eliminated: 7,    isWinner: false },
-    { id: 11, name: "Elizabeth Beisel", tribe: "Lairo",   age: 26, occupation: "Olympic Swimmer",      emoji: "🏊", eliminated: 7,    isWinner: false },
-    { id: 12, name: "Kellee Kim",       tribe: "Vokai",   age: 29, occupation: "MBA Student",          emoji: "📚", eliminated: 6,    isWinner: false },
-    { id: 13, name: "Jack Nichting",    tribe: "Vokai",   age: 23, occupation: "Grad Student",         emoji: "🎓", eliminated: 5,    isWinner: false },
-    { id: 14, name: "Jamal Shipman",    tribe: "Vokai",   age: 33, occupation: "College Director",     emoji: "🌟", eliminated: 5,    isWinner: false },
-    { id: 15, name: "Jason Linden",     tribe: "Vokai",   age: 32, occupation: "Jackhammer Operator",  emoji: "🔨", eliminated: 4,    isWinner: false },
-    { id: 16, name: "Molly Byman",      tribe: "Vokai",   age: 27, occupation: "Recruiting Manager",   emoji: "💼", eliminated: 3,    isWinner: false },
-    { id: 17, name: "Vince Moua",       tribe: "Lairo",   age: 27, occupation: "Admissions Counselor", emoji: "🌸", eliminated: 2,    isWinner: false },
-    { id: 18, name: "Ronnie Bardah",    tribe: "Lairo",   age: 35, occupation: "Professional Poker",   emoji: "🃏", eliminated: 1,    isWinner: false },
+    // ── CILA TRIBE (orange) ──────────────────────────────────────
+    { id: 1,  name: "Joe Hunter",             tribe: "Cila",  age: 46, occupation: "Fire Captain",          emoji: "🚒", eliminated: null, isWinner: false, prevSeasons: "S49"            },
+    { id: 2,  name: "Savannah Louie",         tribe: "Cila",  age: 31, occupation: "Marketing Specialist",  emoji: "🌺", eliminated: null, isWinner: false, prevSeasons: "S49 (winner)"   },
+    { id: 3,  name: "Christian Hubicki",      tribe: "Cila",  age: 39, occupation: "Robotics Professor",    emoji: "🤖", eliminated: null, isWinner: false, prevSeasons: "S37"            },
+    { id: 4,  name: "Cirie Fields",           tribe: "Cila",  age: 55, occupation: "Registered Nurse",      emoji: "💊", eliminated: null, isWinner: false, prevSeasons: "S4/16/20/34"    },
+    { id: 5,  name: "Ozzy Lusth",             tribe: "Cila",  age: 43, occupation: "Music Venue Owner",     emoji: "🎸", eliminated: null, isWinner: false, prevSeasons: "S13/16/23/34"   },
+    { id: 6,  name: "Emily Flippen",          tribe: "Cila",  age: 30, occupation: "Investment Analyst",    emoji: "📈", eliminated: null, isWinner: false, prevSeasons: "S45"            },
+    { id: 7,  name: "Jenna Lewis-Dougherty", tribe: "Cila",  age: 47, occupation: "Realtor",               emoji: "🏠", eliminated: null, isWinner: false, prevSeasons: "S1/8"           },
+    { id: 8,  name: "Rick Devens",            tribe: "Cila",  age: 40, occupation: "TV News Anchor",        emoji: "📺", eliminated: null, isWinner: false, prevSeasons: "S38"            },
+    // ── KALO TRIBE (blue) ───────────────────────────────────────
+    { id: 9,  name: "Jonathan Young",         tribe: "Kalo",  age: 32, occupation: "Beach Service Owner",   emoji: "🏖️", eliminated: null, isWinner: false, prevSeasons: "S42"            },
+    { id: 10, name: "Dee Valladares",         tribe: "Kalo",  age: 28, occupation: "Entrepreneur",          emoji: "💼", eliminated: null, isWinner: false, prevSeasons: "S45 (winner)"   },
+    { id: 11, name: "Mike White",             tribe: "Kalo",  age: 54, occupation: "Writer/Director",       emoji: "🎬", eliminated: null, isWinner: false, prevSeasons: "S37"            },
+    { id: 12, name: "Kamilla Karthigesu",     tribe: "Kalo",  age: 31, occupation: "Software Engineer",     emoji: "💻", eliminated: null, isWinner: false, prevSeasons: "S47"            },
+    { id: 13, name: "Charlie Davis",          tribe: "Kalo",  age: 27, occupation: "Attorney",              emoji: "⚖️", eliminated: null, isWinner: false, prevSeasons: "S46"            },
+    { id: 14, name: "Tiffany Ervin",          tribe: "Kalo",  age: 34, occupation: "Artist/Creative Prod.", emoji: "🎨", eliminated: null, isWinner: false, prevSeasons: "S41"            },
+    { id: 15, name: "Chrissy Hofbeck",        tribe: "Kalo",  age: 54, occupation: "Actuary",               emoji: "🔢", eliminated: null, isWinner: false, prevSeasons: "S35"            },
+    { id: 16, name: "Coach Wade",             tribe: "Kalo",  age: 53, occupation: "Soccer Coach/Musician", emoji: "⚽", eliminated: null, isWinner: false, prevSeasons: "S18/20/23"      },
+    // ── VATU TRIBE (pink) ───────────────────────────────────────
+    { id: 17, name: "Colby Donaldson",        tribe: "Vatu",  age: 51, occupation: "Rancher/Welder",        emoji: "🤠", eliminated: null, isWinner: false, prevSeasons: "S2/20"          },
+    { id: 18, name: "Genevieve Mushaluk",     tribe: "Vatu",  age: 34, occupation: "Lawyer",                emoji: "👩‍⚖️", eliminated: null, isWinner: false, prevSeasons: "S47"            },
+    { id: 19, name: "Rizo Velovic",           tribe: "Vatu",  age: 26, occupation: "Tech Sales",            emoji: "📱", eliminated: null, isWinner: false, prevSeasons: "S49"            },
+    { id: 20, name: "Angelina Keeley",        tribe: "Vatu",  age: 35, occupation: "Entrepreneur",          emoji: "🧠", eliminated: null, isWinner: false, prevSeasons: "S37"            },
+    { id: 21, name: "Q Burdette",             tribe: "Vatu",  age: 31, occupation: "Real Estate Broker",    emoji: "🏡", eliminated: null, isWinner: false, prevSeasons: "S46"            },
+    { id: 22, name: "Stephenie LaGrossa",     tribe: "Vatu",  age: 45, occupation: "Pharmaceutical Sales",  emoji: "💪", eliminated: null, isWinner: false, prevSeasons: "S10/20"         },
+    { id: 23, name: "Aubry Bracco",           tribe: "Vatu",  age: 39, occupation: "Marketing Director",    emoji: "🌟", eliminated: null, isWinner: false, prevSeasons: "S32/34"         },
+    { id: 24, name: "Kyle Fraser",            tribe: "Vatu",  age: 31, occupation: "Landscaper",            emoji: "🌿", eliminated: null, isWinner: false, prevSeasons: "S48 (winner)"   },
   ]
 };
 
-// Week-by-week elimination results (who was voted off each week)
+// Week-by-week elimination results
+// Season 50 premiered Feb 25, 2026 — update as episodes air!
+// Format: { week, eliminated: contestantId, immunityWinner: contestantId, note }
 const ELIMINATION_ORDER = [
-  { week: 1,  eliminated: 18, immunityWinner: 9,  note: "First tribal of the season" },
-  { week: 2,  eliminated: 17, immunityWinner: 3,  note: "Tribe swap shakeup" },
-  { week: 3,  eliminated: 16, immunityWinner: 1,  note: "Social game factors in" },
-  { week: 4,  eliminated: 15, immunityWinner: 4,  note: "Alliances form" },
-  { week: 5,  eliminated: 14, immunityWinner: 2,  note: "Double elimination week" },
-  { week: 5,  eliminated: 13, immunityWinner: 2,  note: "Second boot of double ep" },
-  { week: 6,  eliminated: 12, immunityWinner: 8,  note: "Merge episode drama" },
-  { week: 7,  eliminated: 10, immunityWinner: 1,  note: "Double boot" },
-  { week: 7,  eliminated: 11, immunityWinner: 1,  note: "Second double boot" },
-  { week: 8,  eliminated: 9,  immunityWinner: 5,  note: "Idol played wrong" },
-  { week: 9,  eliminated: 8,  immunityWinner: 1,  note: "Numbers dwindle" },
-  { week: 10, eliminated: 7,  immunityWinner: 4,  note: "Blindside" },
-  { week: 11, eliminated: 6,  immunityWinner: 3,  note: "Dan removed by producers" },
-  { week: 12, eliminated: 5,  immunityWinner: 1,  note: "Immunity run" },
-  { week: 13, eliminated: 3,  immunityWinner: 1,  note: "Firemaking challenge" },
-  { week: 14, eliminated: 4,  immunityWinner: 1,  note: "Finale" },
-  { week: 14, eliminated: 2,  immunityWinner: 1,  note: "Runner-up" },
+  // Add results here as episodes air, e.g.:
+  // { week: 1, eliminated: 16, immunityWinner: 5, note: "First boot of S50" },
 ];
 
 // Trivia Questions (Survivor history)
@@ -142,15 +138,15 @@ const TRIVIA_QUESTIONS = [
     difficulty: "medium"
   },
   {
-    question: "What was the twist in Survivor: Island of the Idols (Season 39)?",
-    options: ["Returning legends mentored players", "Fans vs Favorites", "Blood vs Water", "Edge of Extinction"],
-    correct: 0,
-    difficulty: "medium"
+    question: "What is the theme/subtitle of Survivor Season 50?",
+    options: ["Winners at War", "In the Hands of the Fans", "Island of the Idols", "Edge of Extinction"],
+    correct: 1,
+    difficulty: "easy"
   },
   {
-    question: "Who are the 'Legends' on Island of the Idols?",
-    options: ["Ozzy and Cirie", "Boston Rob and Sandra", "Malcolm and Parvati", "Rupert and Russell"],
-    correct: 1,
+    question: "How many contestants started Season 50?",
+    options: ["18", "20", "22", "24"],
+    correct: 3,
     difficulty: "medium"
   },
   {
@@ -173,20 +169,20 @@ const TRIVIA_QUESTIONS = [
   }
 ];
 
-// Memory Match pairs (survivor + season)
+// Memory Match pairs — S50 cast members matched to their first winning/notable season
 const MEMORY_PAIRS = [
-  { id: "a", type: "player", content: "Richard Hatch",   match: "A" },
-  { id: "b", type: "season", content: "Borneo (S1)",      match: "A" },
-  { id: "c", type: "player", content: "Sandra",           match: "B" },
-  { id: "d", type: "season", content: "Pearl Islands",    match: "B" },
-  { id: "e", type: "player", content: "Boston Rob",       match: "C" },
-  { id: "f", type: "season", content: "Redemption Island",match: "C" },
-  { id: "g", type: "player", content: "Tony Vlachos",     match: "D" },
-  { id: "h", type: "season", content: "Cagayan (S28)",    match: "D" },
-  { id: "i", type: "player", content: "Parvati Shallow",  match: "E" },
-  { id: "j", type: "season", content: "Micronesia (S16)", match: "E" },
-  { id: "k", type: "player", content: "Kim Spradlin",     match: "F" },
-  { id: "l", type: "season", content: "One World (S24)",  match: "F" },
+  { id: "a", type: "player", content: "Cirie Fields",        match: "A" },
+  { id: "b", type: "season", content: "Panama (S11)",        match: "A" },
+  { id: "c", type: "player", content: "Ozzy Lusth",          match: "B" },
+  { id: "d", type: "season", content: "Cook Islands (S13)",  match: "B" },
+  { id: "e", type: "player", content: "Colby Donaldson",     match: "C" },
+  { id: "f", type: "season", content: "Australia (S2)",      match: "C" },
+  { id: "g", type: "player", content: "Mike White",          match: "D" },
+  { id: "h", type: "season", content: "David v Goliath (S37)",match: "D"},
+  { id: "i", type: "player", content: "Dee Valladares",      match: "E" },
+  { id: "j", type: "season", content: "S45 Winner 🏆",       match: "E" },
+  { id: "k", type: "player", content: "Coach Wade",          match: "F" },
+  { id: "l", type: "season", content: "Tocantins (S18)",     match: "F" },
 ];
 
 // Puzzle words (scrambled Survivor tribal/location words)
